@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        nav{
+            height: 7vh;
+            background-color: #4CAF50;
+            padding: 5px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h2 id="welcomeMessage">Hello, Welcome!</h2>
+         <h3 id="username"> </h3>
+    </nav>
+    
+    
+    <button onclick="logout()" style="margin: 20px 20px;">logout</button>
+
+    <script>
+        // Fetch username from localStorage
+        const username = localStorage.getItem("username");
+
+
+        console.log(username);
+
+        if (username) {
+            document.getElementById("welcomeMessage").innerText = `Hello, ${username}! `;
+            document.getElementById("username").innerText =  username ;
+        } else {
+            window.location.href = "login.html"; // Redirect  user  not logged in
+        }
+
+        function logout(){
+            if(username == "admin"){
+                localStorage.removeItem("username"); // Remove username
+                window.location.href = "login.html";
+                return;
+            }
+            
+            localStorage.removeItem("token");  // Remove JWT token
+            localStorage.removeItem("username"); // Remove username
+            window.location.href = "login.html";
+        }
+        </script>
+</body>
+</html>
