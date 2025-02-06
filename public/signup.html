@@ -31,7 +31,7 @@
             const password = document.getElementById("password").value;
             const phone = document.getElementById("phone").value;
 
-            const response = await fetch("http://localhost:5000/signup", {
+            const response = await fetch("http://localhost:5000/signup", {  // fetch()prevent page reload and handle responses dynamically
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ name, email, dob, password, phone })

@@ -20,12 +20,12 @@
 
     <script>
         document.getElementById("loginForm").addEventListener("submit", async function(event) {
-            event.preventDefault();
+            event.preventDefault();  //Prevents page refresh after submitting the form.Without this, the form would reload the page when submitted.Instead, we handle the form submission manually using JavaScript.
             
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
 
-            const response = await fetch("http://localhost:5000/login", {
+            const response = await fetch("http://localhost:5000/login", {  //fetch() prevent page reload and handle responses dynamically
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password })

@@ -64,11 +64,11 @@ app.post("/login", (req, res) => {
         if (results.length === 0) return res.status(401).json({ error: "Invalid email or password" });
 
         const user = results[0];
-        const isMatch = await bcrypt.compare(password, user.password);
+        const isMatch = await bcrypt.compare(password, user.password);  //bcrypt.compare() compares a plain text password with a hashed password stored in the database.
 
         if (!isMatch) return res.status(401).json({ error: "Invalid email or password" });
 
-        const token = jwt.sign({ username: user.name }, "secretkey", { expiresIn: "1h" });
+        const token = jwt.sign({ username: user.name }, "secretkey", { expiresIn: "1h" });  //jwt.sign() is a function from the jsonwebtoken library that creates a JWT token.
         res.json({ message: "Login successful", token, username:user.name });
     });
 });
